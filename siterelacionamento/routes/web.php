@@ -19,22 +19,6 @@ Route::get('/', function () {
 });
 
 // Rota para registrar um novo usuário (página de registro)
-Route::get('/register', 'Auth\CustomRegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'Auth\CustomRegisterController@register');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
-
-// Rota para fazer login (página de login)
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login', 'Auth\LoginController@login');
-
-// Rota para fazer logout
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-
-// Rota para visualizar o perfil do usuário
-Route::get('/perfil/{id}', 'UserController@show')->name('perfil.show');
-
-// Rota para editar o perfil do usuário (página de edição de perfil)
-Route::get('/perfil/{id}/editar', 'UserController@edit')->name('perfil.edit');
-Route::put('/perfil/{id}', 'UserController@update')->name('perfil.update');
-
-// Outras rotas para correspondência, mensagens, etc.
